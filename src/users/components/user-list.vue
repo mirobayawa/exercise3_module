@@ -9,8 +9,10 @@
       </li>
     </ul>
     <div class="p-5 space-x-5">
-      <button class="rounded-xl border-2 border-indigo-300 px-10 py-3" @click="previousPage">Previous</button>
-      <button class="rounded-xl border-2 border-indigo-300 px-10 py-3" @click="nextPage">Next</button>
+      <button class="rounded-xl border-2 border-indigo-300 px-10 py-3"
+       @click="previousPage">Previous</button>
+      <button class="rounded-xl border-2 border-indigo-300 px-10 py-3"
+       @click="nextPage">Next</button>
     </div>
   </div>
 </template>
@@ -42,6 +44,7 @@ export default defineComponent({
       },
     },
   },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setup(props: { searchOptions: Record<string, any> }) {
     const { searchOptions } = toRefs(props);
     const {
@@ -55,7 +58,10 @@ export default defineComponent({
     );
 
     function nextPage() {
-      router.push({ name: RouteNames.Home, query: { after: result.value.search.pageInfo.endCursor } });
+      router.push({
+        name: RouteNames.Home,
+        query: { after: result.value.search.pageInfo.endCursor },
+      });
       fetchMore({
         variables: {
           after: result.value.search.pageInfo.endCursor,
@@ -82,7 +88,10 @@ export default defineComponent({
     }
 
     function previousPage() {
-      router.push({ name: RouteNames.Home, query: { before: result.value.search.pageInfo.startCursor } });
+      router.push({
+        name: RouteNames.Home,
+        query: { before: result.value.search.pageInfo.startCursor },
+      });
       fetchMore({
         variables: {
           after: null,

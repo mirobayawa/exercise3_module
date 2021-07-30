@@ -5,14 +5,15 @@
     <div class="w-full flex justify-center">
       <div class="flex space-x-5 border-2 rounded-xl shadow-md px-5 py-2 w-2/6
       border-indigo-300 outline-none">
-        <svg fill="none" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-        viewBox="0 0 24 24" class="w-6 h-6">
+        <svg fill="none" stroke="gray" stroke-linecap="round" stroke-linejoin="round"
+         stroke-width="2" viewBox="0 0 24 24" class="w-6 h-6">
           <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
         </svg>
-        <input v-model="query" class="outline-none w-full rounded-lg px-2" type="text" placeholder="Search Users">
+        <input v-model="query" class="outline-none w-full rounded-lg px-2" type="text"
+         placeholder="Search Users">
       </div>
-      <button @click="search" class="ml-3 border-2 px-5 py-2 rounded-xl shadow-sm hover:border-indigo-300
-       hover:text-indigo-400">Search</button>
+      <button @click="search" class="ml-3 border-2 px-5 py-2 rounded-xl shadow-sm
+       hover:border-indigo-300 hover:text-indigo-400">Search</button>
     </div>
     <!-- User List Component -->
     <UserList :search-options="searchOptions"/>

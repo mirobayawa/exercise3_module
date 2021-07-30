@@ -1,5 +1,6 @@
 <template>
-  <div class="border-2 rounded-xl shadow-md w-2/4 h-44 p-3 flex items-start cursor-pointer hover:border-indigo-300" @click="toRepos(user.login)">
+  <div class="border-2 rounded-xl shadow-md w-2/4 h-44 p-3 flex items-start
+   cursor-pointer hover:border-indigo-300" @click="toRepos(user.login)">
     <div class="flex flex-col w-2/5 h-full items-start ml-2">
       <img class=" h-20 w-20 p-2 rounded-full ring-2 ring-white" :src="user.avatarUrl" alt="" />
       <span class="mt-3">{{ user.name }}</span>
@@ -26,9 +27,7 @@ export default defineComponent({
       required: true,
     },
   },
-  setup(props) {
-    const userDetails = (props.user);
-
+  setup() {
     const toRepos = (id: string) => {
       console.log(id);
       router.push({ name: RouteNames.Repositories, params: { id } });
@@ -36,7 +35,6 @@ export default defineComponent({
 
     return {
       toRepos,
-      userDetails,
     };
   },
 });

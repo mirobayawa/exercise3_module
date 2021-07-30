@@ -8,8 +8,10 @@
       </li>
     </ul>
     <div class="p-5 space-x-5">
-      <button class="rounded-xl border-2 border-indigo-300 px-10 py-3" @click="previousPage">Previous</button>
-      <button class="rounded-xl border-2 border-indigo-300 px-10 py-3" @click="nextPage">Next</button>
+      <button class="rounded-xl border-2 border-indigo-300 px-10 py-3"
+       @click="previousPage">Previous</button>
+      <button class="rounded-xl border-2 border-indigo-300 px-10 py-3"
+       @click="nextPage">Next</button>
     </div>
   </div>
 </template>
@@ -42,6 +44,7 @@ export default defineComponent({
   components: {
     RepositoryDetails,
   },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setup(props: { searchOptions: Record<string, any> }) {
     const { searchOptions } = toRefs(props);
     const {
@@ -51,13 +54,13 @@ export default defineComponent({
     const repos = useResult(
       result,
       [],
-      (data) => data.repositoryOwner && data.repositoryOwner.repositories.edges
+      (data) => data.repositoryOwner && data.repositoryOwner.repositories.edges,
     );
 
     function nextPage() {
-      router.push({ name: RouteNames.Repositories, query: {
-        after: result.value.repositoryOwner.repositories.pageInfo.endCursor
-        }
+      router.push({
+        name: RouteNames.Repositories,
+        query: { after: result.value.repositoryOwner.repositories.pageInfo.endCursor },
       });
       fetchMore({
         variables: {
@@ -90,15 +93,15 @@ export default defineComponent({
     }
 
     function previousPage() {
-      router.push({ name: RouteNames.Repositories, query: {
-        before: result.value.repositoryOwner.repositories.pageInfo.start
-        }
+      router.push({
+        name: RouteNames.Repositories,
+        query: { before: result.value.repositoryOwner.repositories.pageInfo.startCursor },
       });
       fetchMore({
         variables: {
-          after: null,
           first: null,
           last: 3,
+          after: null,
           before: result.value.repositoryOwner.repositories.pageInfo.startCursor,
         },
         updateQuery: (previousResult, { fetchMoreResult }) => {
@@ -131,7 +134,7 @@ export default defineComponent({
       repos,
       nextPage,
       previousPage,
-    }
+    };
   },
 });
 </script>
